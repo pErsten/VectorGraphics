@@ -19,12 +19,12 @@ void kik(bool** arr, int& row1, int& column1, int& row2, int& column2) {
 		}
 }
 int main() {
+	int rows = 44, columns = 100;
+	bool** arr = new bool* [rows]();
+	for (int count = 0; count < rows; ++count)
+		arr[count] = new bool[columns]();
+
 	int row1 = 40, column1 = 73, row2 = 12, column2 = 65;
-
-	bool** arr = new bool* [44]();
-	for (int count = 0; count < 44; ++count)
-		arr[count] = new bool[100]();
-
 	kik(arr, row1, column1, row2, column2);
 	column2 = 20; row2 = 30;
 	kik(arr, row1, column1, row2, column2);
@@ -49,4 +49,7 @@ int main() {
 	for (int i = 0; i < 200; i++)
 		cout << "-";
 	cout << "> X 100";
+	for (int count = 0; count < rows; ++count)
+		delete[] arr[count];
+	delete[] arr;
 }
