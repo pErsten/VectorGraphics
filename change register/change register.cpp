@@ -3,6 +3,7 @@
 #include <vector>
 #include <Windows.h>
 #include <conio.h>
+#include <cassert>
 using namespace std;
 class Point {
 	int m_x;
@@ -10,10 +11,10 @@ class Point {
 public:
 	Point() { m_x = 0; m_y = 0; }
 	void setValue(int x, int y) { m_x = x; m_y = y; }
-	void incx() { m_x++; }
-	void incy() { m_y++; }
-	void decx() { m_x--; }
-	void decy() { m_y--; }
+	void incx() { if (m_x < 99) m_x++; }
+	void incy() { if (m_y < 43) m_y++; }
+	void decx() { if (m_x > 0) m_x--; }
+	void decy() { if (m_y > 0) m_y--; }
 	int getx() { return m_x; }
 	int gety() { return m_y; }
 };
@@ -23,7 +24,7 @@ void kik(bool** arr, Point& point1, Point& point2, bool index) {
 	int row1 = point1.gety();
 	int row2 = point2.gety();
 	double x;
-	cout << ((index) ? " -> " : "   ") << "A( " << column1 << ", " << row1 << " )" << endl;
+	cout << ((index) ? " -> " : "    ") << "A( " << column1 << ", " << row1 << " )" << endl;
 	if(abs(column1-column2)>abs(row1-row2))
 		for (int i = ((column1 > column2) ? column2 : column1); i <= ((column1 > column2) ? column1 : column2); i++) {
 			x = (1.0 / (column2 - column1)) * (i - column1) * (row2 - row1) + row1;
